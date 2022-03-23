@@ -1,0 +1,113 @@
+:root {
+    --bg: #797;
+    --cl: #9B9;
+    --bt: #353;
+    --wt: #FFF;
+}
+
+body, html {
+    max-width: 96rem;
+    margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+}
+input, button {
+    display: block;
+    font: inherit;
+    border: none;
+}
+
+header {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: var(--cl);
+}
+header h1 {
+    margin: 0;
+    text-align: center;
+}
+
+main {
+    display: grid;
+    place-items: center;
+    gap: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: var(--cl);
+}
+main canvas {
+    width: 100%;
+    max-width: 80rem;
+    border-radius: 1rem;
+    background: var(--wt);
+}
+
+form {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+fieldset {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+input[type=file] {
+    display: none;
+}
+input[type=number] {
+    width: 3rem;
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+    background: var(--wt);
+}
+.input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    height: 2.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: var(--bt);
+    color: #FFF;
+    text-align: center;
+}
+.input--button {
+    height: fit-content;
+}
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: var(--cl);
+}
+footer p {
+    margin: 0;
+}
+
+
+#debug {
+    position: absolute;
+    top: 0; left: 0;
+    padding: .5rem .7rem;
+    background: #FFF;
+    pointer-events: none;
+}
+
+#debug-square {
+    position: absolute;
+    top: var(--y); left: var(--x);
+    width: var(--s); height: var(--s);
+    border: #00F 1px solid;
+    pointer-events: none;
+}
