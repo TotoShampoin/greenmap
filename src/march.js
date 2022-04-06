@@ -25,7 +25,7 @@ export function getMarchSquare(x, y, s, color) {
     return getSquare(x*s, y*s, s).map(rgb => getDistance(rgb, color));
 }
 
-function marchOne(x, y, s, color, l) {
+function marchOne(x, y, s, color, l, mode = 0) {
     const lines = [];
     const [a00, a01, a10, a11, c] = getMarchSquare(x, y, s, color);
     const   pu = lerp(l, a00, a01),
@@ -36,39 +36,72 @@ function marchOne(x, y, s, color, l) {
             id = inRange(pd),
             il = inRange(pl),
             ir = inRange(pr);
-    if(iu && il && !id && !ir) {
-        lines.push([[pu,  0], [ 0, pl]]);
-    }
-    if(iu && ir && !id && !il) {
-        lines.push([[pu,  0], [ 1, pr]]);
-    }
-    if(id && il && !iu && !ir) {
-        lines.push([[pd,  1], [ 0, pl]]);
-    }
-    if(id && ir && !iu && !il) {
-        lines.push([[pd,  1], [ 1, pr]]);
-    }
-    if(iu && id && !il && !ir) {
-        lines.push([[pu,  0], [pd,  1]]);
-    }
-    if(il && ir && !iu && !id) {
-        lines.push([[ 0, pl], [ 1, pr]]);
-    }
-    if(iu && id && il && ir) {
-        if(a00 < l && a11 < l && c < l) {
-            lines.push([[pu,  0], [ 1, pr]]);
-            lines.push([[ 0, pl], [pd,  1]]);
-        } else {
-            lines.push([[pu,  0], [ 0, pl]]);
-            lines.push([[ 1, pr], [pd,  1]]);
-        }
+    switch(mode) {
+        case 0:
+            if(iu && il && !id && !ir) {
+                lines.push([[pu,  0], [ 0, pl]]);
+            }
+            if(il && id && !iu && !ir) {
+                lines.push([[ 0, pl], [pd,  1]]);
+            }
+            if(id && ir && !iu && !il) {
+                lines.push([[pd,  1], [ 1, pr]]);
+            }
+            if(ir && iu && !id && !il) {
+                lines.push([[ 1, pr], [pu,  0]]);
+            }
+            if(iu && id && !il && !ir) {
+                lines.push([[pu,  0], [pd,  1]]);
+            }
+            if(il && ir && !iu && !id) {
+                lines.push([[ 0, pl], [ 1, pr]]);
+            }
+            if(iu && id && il && ir) {
+                if(a00 < l && a11 < l && c < l) {
+                    lines.push([[pu,  0], [ 1, pr]]);
+                    lines.push([[ 0, pl], [pd,  1]]);
+                } else {
+                    lines.push([[pu,  0], [ 0, pl]]);
+                    lines.push([[ 1, pr], [pd,  1]]);
+                }
+            }
+            break;
+        case 1:
+            if(iu && il && !id && !ir) {
+                lines.push([[.5,  0], [ 0, .5]]);
+            }
+            if(il && id && !iu && !ir) {
+                lines.push([[ 0, .5], [.5,  1]]);
+            }
+            if(id && ir && !iu && !il) {
+                lines.push([[.5,  1], [ 1, .5]]);
+            }
+            if(ir && iu && !id && !il) {
+                lines.push([[ 1, .5], [.5,  0]]);
+            }
+            if(iu && id && !il && !ir) {
+                lines.push([[.5,  0], [.5,  1]]);
+            }
+            if(il && ir && !iu && !id) {
+                lines.push([[ 0, .5], [ 1, .5]]);
+            }
+            if(iu && id && il && ir) {
+                if(a00 < l && a11 < l && c < l) {
+                    lines.push([[.5,  0], [ 1, .5]]);
+                    lines.push([[ 0, .5], [.5,  1]]);
+                } else {
+                    lines.push([[.5,  0], [ 0, .5]]);
+                    lines.push([[ 1, .5], [.5,  1]]);
+                }
+            }
+            break;
     }
     return lines;
 }
 
 
-export function getMarches(x, y, s, color, l) {
-    const marches = marchOne(x, y, s, color, l);
+export function getMarches(x, y, s, color, l, mode = 0) {
+    const marches = marchOne(x, y, s, color, l, mode);
     const march_output = [];
     marches.forEach(march => {
         if(march) {

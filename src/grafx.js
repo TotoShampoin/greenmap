@@ -23,6 +23,16 @@ export const drawLine = ([x0, y0], [x1, y1], c) => {
     ctx.stroke();
 }
 
+export const drawPoly = (poly, c) => {
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = c;
+    ctx.beginPath();
+    ctx.moveTo(...poly[0]);
+    poly.slice(1).forEach(p => ctx.lineTo(...p));
+    ctx.closePath();
+    ctx.stroke();
+}
+
 export const getSquare = (x0, y0, size) => [
     ctx.getImageData(x0       , y0       , 1, 1).data,
     ctx.getImageData(x0+size  , y0       , 1, 1).data,

@@ -14,7 +14,8 @@ export const input = {
 };
 export const onupdate = {
     file: () => {},
-    click: () => {}
+    click: () => {},
+    export: () => {}
 }
 
 export const output = () => {};
@@ -38,4 +39,7 @@ $updatebut.on("click", function() {
     input.toler = parseInt($tolerrang.val());
     input.squar = parseInt($sqaresize.val());
     onupdate.click();
-})
+});
+$exportbut.on("click", function() {
+    onupdate.export();
+});
