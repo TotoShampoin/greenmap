@@ -17,8 +17,9 @@
             <fieldset>
                 <label for="inputfile" class="input input--button">Import</label>
                     <input type="file" name="inputfile" id="inputfile">
-                <button id="updatebut" class="input input--button">Update</button>
                 <button id="exportbut" class="input input--button">Export</button>
+                <button id="updatebut" class="input input--button">Update</button>
+                <progress id="prog" class="progressbar" max="100" value="0"></progress>
             </fieldset>
             <fieldset>
                 <label for="color" class="input">
@@ -27,7 +28,8 @@
                 </label>
                 <label for="tolerance" class="input">
                     <span>Tolerance </span>
-                    <input type="range" name="tolerance" id="input-toler" min="0" max="100" value="30">
+                    <input type="range" name="tolerance" id="input-toler" min="0" max="100" value="15">
+                    <input type="number" name="tolerance" id="input-toler-2" min="0" max="100" value="15">
                 </label>
                 <label for="squaresize" class="input">
                     <span>Square size </span>
@@ -41,6 +43,8 @@
         <p>Urbanature</p>
     </footer>
     <script src="./includes/jquery.slim.min.js"></script>
+    <script src="./includes/jszip.min.js"></script>
+    <script src="./includes/jszip-utils.min.js"></script>
     <script src="./src/main.js" type="module"></script>
 </body>
 </html>

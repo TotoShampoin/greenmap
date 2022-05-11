@@ -76,11 +76,31 @@ input[type=number] {
     padding: 1rem;
     border-radius: 1rem;
     background: var(--bt);
-    color: #FFF;
+    color: var(--wt);
     text-align: center;
 }
 .input--button {
     height: fit-content;
+}
+.input:disabled, .input--disabled {
+    --wt: var(--bg);
+}
+
+.progressbar {
+    appearance: none;
+    width: 8rem;
+    height: 1rem;
+    border-radius: .375rem;
+    overflow: hidden;
+}
+.progressbar::-webkit-progress-bar {
+    background-color: var(--wt);
+}
+.progressbar::-webkit-progress-value {
+    border-top-right-radius: .375rem;
+    border-bottom-right-radius: .375rem;
+    background-color: var(--bt);
+    /* transition: width 100ms; */
 }
 
 footer {
