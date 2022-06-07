@@ -2,6 +2,10 @@
 export const c = $("#c");
 export const ctx = c[0].getContext("2d");
 
+export const clearGraph = () => {
+    ctx.clearRect(0, 0, c.width(), c.height());
+}
+
 export const drawImage = (image) => {
     ctx.drawImage(image, 0, 0);
 }
@@ -33,12 +37,14 @@ export const drawPoly = (poly, c) => {
     ctx.stroke();
 }
 
+export const getPixel = (x, y) => ctx.getImageData(x, y, 1, 1).data;
+
 export const getSquare = (x0, y0, size) => [
-    ctx.getImageData(x0       , y0       , 1, 1).data,
-    ctx.getImageData(x0+size  , y0       , 1, 1).data,
-    ctx.getImageData(x0       , y0+size  , 1, 1).data,
-    ctx.getImageData(x0+size  , y0+size  , 1, 1).data,
-    ctx.getImageData(x0+size/2, y0+size/2, 1, 1).data,
+    getPixel(x0       , y0       ),
+    getPixel(x0+size  , y0       ),
+    getPixel(x0       , y0+size  ),
+    getPixel(x0+size  , y0+size  ),
+    getPixel(x0+size/2, y0+size/2),
 ];
 
 window.getSquare = getSquare;

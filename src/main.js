@@ -1,5 +1,5 @@
 import { input, onupdate, lock, unlock } from "./io.js";
-import { c, drawImage, drawPoly } from "./grafx.js";
+import { c, clearGraph, drawImage, drawPoly } from "./grafx.js";
 import "./march.js";
 import { getMarches } from "./march.js";
 import lineToPoly, { closeOOBPoly, removeDuplicatePolies } from "./lineToPoly.js";
@@ -26,6 +26,7 @@ onupdate.click = async () => {
     lock();
     while(lines.length) lines.shift();
     while(polies.length) polies.shift();
+    clearGraph();
     drawImage(input.image);
     const total_i = input.image.width / input.squar;
     const total_j = input.image.height / input.squar;
