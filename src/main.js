@@ -2,7 +2,7 @@ import { input, onupdate, lock, unlock } from "./io.js";
 import { c, drawImage, drawPoly } from "./grafx.js";
 import "./march.js";
 import { getMarches } from "./march.js";
-import lineToPoly, { closeOOBPoly } from "./lineToPoly.js";
+import lineToPoly, { closeOOBPoly, removeDuplicatePolies } from "./lineToPoly.js";
 import { zip } from "./exporter.js";
 
 window.input = input;
@@ -44,6 +44,7 @@ onupdate.click = async () => {
         drawPoly(p, "#00F");
         polies.push([...p]);
     });
+    polies = removeDuplicatePolies(polies);
     console.log(polies);
     unlock();
 }

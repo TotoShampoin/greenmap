@@ -37,6 +37,28 @@ export const closeOOBPoly = poly => {
     return poly;
 }
 
+export const poliesEquals = (p1, p2) => {
+    if(p1.length !== p2.length) {
+        return false;
+    }
+    for(let i = 0; i < p1.length; i++) {
+        if(p1[i] != p2[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+export const removeDuplicatePolies = polies => {
+    const newPolies = [];
+    polies.forEach(poly => {
+        if(!newPolies.some(p => poliesEquals(p, poly))) {
+            newPolies.push(poly);
+        }
+    });
+    return newPolies;
+}
+
 const lineToPoly = lines => {
     const points = [];
     lines.forEach(l => {
@@ -64,7 +86,8 @@ const lineToPoly = lines => {
             }
         })
     }
-    return pointLists.map(pl => pl.map(p => p.toArray()));
+    const pol = pointLists.map(pl => pl.map(p => p.toArray()));
+    return pol;
 }
 
 export default lineToPoly;
