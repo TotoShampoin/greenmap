@@ -58,6 +58,16 @@ export const removeDuplicatePolies = polies => {
     });
     return newPolies;
 }
+export const removeDustyPolies = polies => {
+    // remove every polygone that consist in only 4 pixels
+    const newPolies = [];
+    polies.forEach(poly => {
+        if(poly.length > 4) {
+            newPolies.push(poly);
+        }
+    });
+    return newPolies;
+}
 
 const lineToPoly = lines => {
     const points = [];
