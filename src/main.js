@@ -45,7 +45,6 @@ onupdate.click = async () => {
     polies.forEach(p => {
         closeOOBPoly(p);
         drawPoly(p, "#00F");
-        polies.push([...p]);
     });
     console.log(polies);
     unlock();
